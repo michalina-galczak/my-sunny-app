@@ -1,0 +1,55 @@
+body {
+  text-align: center;
+}
+.big-card {
+  background-image: linear-gradient(
+    to top,
+    #dad4ec 0%,
+    #dad4ec 1%,
+    #f3e7e9 100%
+  );
+  margin-top: 60px;
+  padding-top: 20px;
+}
+
+.top {
+  margin-top: 20px;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.middle {
+  margin-bottom: 30px;
+}
+
+.main-emoji {
+  margin-left: 60px;
+}
+
+.main-measurements {
+  margin-top: 25px;
+}
+.weekly {
+  margin-left: 60px;
+}
+.fa-sun {
+  color: #f5fcc1;
+  font-size: 120px;
+}
+
+.daily-sun {
+  color: #f5fcc1;
+  font-size: 40px;
+}
+
+.fa-cloud {
+  color: #c2f0fc;
+  font-size: 40px;
+}
+
+.fa-cloud-rain {
+  color: #c2f0fc;
+  font-size: 40px;
+}
