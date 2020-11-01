@@ -1,47 +1,60 @@
-let dateElement = document.querySelector("#date-now");
-let timeNow = new Date();
-let hours = timeNow.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
+let weatherIcon = document.querySelector("#icon");
+let statsDiv = document.querySelector("#stats");
+weatherIcon.style.visibility = "hidden";
+statsDiv.style.visibility = "hidden";
+
+function formatDate(timestamp, timezone) {
+  let timeNow = new Date(timestamp);
+  let offset = timeNow.getTimezoneOffset() * 60000;
+  let utc = timestamp + offset;
+  let cityTime = utc + (1000 * timezone);
+  let cityDate = new Date(cityTime);
+  let hours = cityDate.getHours();
+
+
+  //let hours = timeNow.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = cityDate.getMinutes();
+  //let minutes = timeNow.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let currentElement = document.querySelector("#day-now");
+  let day = cityDate.getDay();
+  //let day = timeNow.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thurday",
+    "Friday",
+    "Saturday"
+  ];
+  let date = cityDate.getDate();
+  let month = cityDate.getMonth();
+  //let date = timeNow.getDate();
+  //let month = timeNow.getMonth();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  return `${days[day]}, ${months[month]} ${date} ${hours}:${minutes}`;
 }
-let minutes = timeNow.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-dateElement.innerHTML = `${hours}:${minutes}`;
-
-let currentElement = document.querySelector("#day-now");
-let day = timeNow.getDay();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thurday",
-  "Friday",
-  "Saturday"
-];
-let date = timeNow.getDate();
-let month = timeNow.getMonth();
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
-let year = timeNow.getFullYear();
-
-currentElement.innerHTML = `<strong>${days[day]} ${months[month]} ${date} , ${year}</strong>`;
-
 function putCity(event) {
   let searchCity = document.querySelector("#search-city");
   let typedCity = searchCity.value;
@@ -74,8 +87,11 @@ function showTemperature(response) {
   windElement.innerHTML = response.data.wind.speed;
   let skyElement = document.querySelector("#sky");
   skyElement.innerHTML = response.data.weather[0].main;
-  let iconElement = document.querySelector("#icon");
-  iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  weatherIcon.style.visibility = "visible";
+  weatherIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  statsDiv.style.visibility = "visible";
+  let dateElement = document.querySelector("#date-now");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000, response.data.timezone);
 }
 
 function showCityTemp(city) {

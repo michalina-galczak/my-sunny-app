@@ -24,10 +24,6 @@ body {
   margin-bottom: 30px;
 }
 
-.main-emoji {
-  margin-left: 60px;
-}
-
 .main-measurements {
   margin-top: 25px;
 }
@@ -74,4 +70,14 @@ body {
 
 .col-3 .main-measurements {
   text-align: center;
+}
+
+#icon {
+  height: 150px;
+  width: 150px;
+  text-align: center;
+}
+
+#city {
+  padding-top: 25px;
 }
