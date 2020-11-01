@@ -53,3 +53,25 @@ body {
   color: #c2f0fc;
   font-size: 40px;
 }
+
+#search-city {
+  margin: 0 0 0 15px;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-weight: 400;
+  font-size: 1rem;
+  height: 40px;
+  line-height: 1.5;
+}
+
+.col-4 {
+  text-align: center;
+}
+
+.col-4 .main-emoji {
+  text-align: center;
+}
+
+.col-3 .main-measurements {
+  text-align: center;
+}
