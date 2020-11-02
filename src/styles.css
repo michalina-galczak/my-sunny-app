@@ -10,6 +10,7 @@ body {
   );
   margin-top: 60px;
   padding-top: 20px;
+  height: 120px;
 }
 
 .top {
@@ -24,32 +25,6 @@ body {
   margin-bottom: 30px;
 }
 
-.main-measurements {
-  margin-top: 25px;
-}
-.weekly {
-  margin-left: 60px;
-}
-.fa-sun {
-  color: #f5fcc1;
-  font-size: 120px;
-}
-
-.daily-sun {
-  color: #f5fcc1;
-  font-size: 40px;
-}
-
-.fa-cloud {
-  color: #c2f0fc;
-  font-size: 40px;
-}
-
-.fa-cloud-rain {
-  color: #c2f0fc;
-  font-size: 40px;
-}
-
 #search-city {
   margin: 0 0 0 15px;
   border: 1px solid transparent;
@@ -57,7 +32,16 @@ body {
   font-weight: 400;
   font-size: 1rem;
   height: 40px;
+  width: 300px;
   line-height: 1.5;
+}
+
+#btnSearch {
+  width: 100px;
+}
+
+#btnLocation {
+  width: 170px;
 }
 
 .col-4 {
@@ -68,8 +52,12 @@ body {
   text-align: center;
 }
 
-.col-3 .main-measurements {
-  text-align: center;
+.stats {
+  margin: 25px 0 0 35px;
+}
+
+.degrees {
+  margin-left: 15px;
 }
 
 #icon {
@@ -80,4 +68,23 @@ body {
 
 #city {
   padding-top: 25px;
+}
+
+h5 {
+  text-align: center;
+}
+
+.forecast {
+  margin-left: 20px;
+}
+
+img {
+  height: 65px;
+  width: 65px;
+  text-align: center;
+  margin-left: 16px;
+}
+
+.forecast-temps{
+  text-align: center;
 }
