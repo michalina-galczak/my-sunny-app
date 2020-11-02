@@ -1,3 +1,4 @@
+let searchCity;
 let weatherIcon = document.querySelector("#icon");
 let statsDiv = document.querySelector("#stats");
 weatherIcon.style.visibility = "hidden";
@@ -27,7 +28,6 @@ function formatDate(timestamp, timezone) {
 
   let currentElement = document.querySelector("#day-now");
   let day = cityDate.getDay();
-  //let day = timeNow.getDay();
   let days = [
     "Sunday",
     "Monday",
@@ -39,8 +39,6 @@ function formatDate(timestamp, timezone) {
   ];
   let date = cityDate.getDate();
   let month = cityDate.getMonth();
-  //let date = timeNow.getDate();
-  //let month = timeNow.getMonth();
   let months = [
     "January",
     "February",
@@ -58,8 +56,9 @@ function formatDate(timestamp, timezone) {
 
   return `${days[day]}, ${months[month]} ${date} ${hours}:${minutes}`;
 }
+
 function putCity(event) {
-  let searchCity = document.querySelector("#search-city");
+  searchCity = document.querySelector("#search-city");
   let typedCity = searchCity.value;
 
   if (typedCity === null) {
@@ -79,6 +78,8 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", putCity);
 
 function showTemperature(response) {
+  let bigCard = document.querySelector(".card");
+  bigCard.style.height = "450px"
   let temperature = Math.round(response.data.main.temp);
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${temperature}°C`;
@@ -108,9 +109,8 @@ function formatHours(timestamp, timezone) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-return `${hours}:${minutes}`
+  return `${hours}:${minutes}`
 }
-
 
 function showCityTemp(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
@@ -125,28 +125,27 @@ function showForecast(response) {
   let forecast = null;
 
   for (let index = 0; index <5; index++) {
-  forecast = response.data.list[index];
-  forecastElement.innerHTML += `
-  <div class="col-2">
-  <h5>
-    ${formatHours(forecast.dt * 1000, response.data.city.timezone)}
-  </h5>
-  <img 
-  src = "https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
-  />
-  <p>
-    <strong>${Math.round(forecast.main.temp_max)}°</strong>  |  ${Math.round(forecast.main.temp_min)}°
-  </p>
-</div>
-  `
-}
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2 forecast">
+    <h5>
+      ${formatHours(forecast.dt * 1000, response.data.city.timezone)}
+    </h5>
+    <img 
+    src = "https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+    />
+    <p class="forecast-temps">
+      <strong>${Math.round(forecast.main.temp_max)}°</strong>  |  ${Math.round(forecast.main.temp_min)}°
+    </p>
+  </div>
+    `
+  }
 }
 
 function showPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
-
+  searchCity.value = '';
   axios.get(apiUrl).then(showTemperature);
 }
-
