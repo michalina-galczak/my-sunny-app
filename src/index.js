@@ -148,4 +148,6 @@ function showPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
   searchCity.value = '';
   axios.get(apiUrl).then(showTemperature);
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=de721be4f431ff99a9769e3b29d705a6&units=metric`;
+  axios.get(apiUrl).then(showForecast);
 }
